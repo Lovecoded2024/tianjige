@@ -1,0 +1,129 @@
+{
+  "nav": {
+    "home": "首页",
+    "fortune": "算命",
+    "artifacts": "法器",
+    "master": "大师",
+    "language": "语言"
+  },
+  "home": {
+    "hero": {
+      "title": "洞悉天机",
+      "subtitle": "五千年智慧与AI的完美融合",
+      "cta": "开始解读",
+      "desc": "通过生辰八字，揭开命运的神秘面纱。AI驱动的精准分析，为您量身定制。"
+    },
+    "features": {
+      "title": "天机阁特色",
+      "items": [
+        {
+          "icon": "sparkles",
+          "title": "AI智能分析",
+          "desc": "先进AI技术结合五千年中华智慧"
+        },
+        {
+          "icon": "globe",
+          "title": "全球化服务",
+          "desc": "多语言支持，服务全球用户"
+        },
+        {
+          "icon": "zap",
+          "title": "即时解读",
+          "desc": "几秒钟内获得您的命理分析"
+        },
+        {
+          "icon": "shield",
+          "title": "隐私保护",
+          "desc": "您的数据经过加密处理，安全无忧"
+        }
+      ]
+    },
+    "cta": {
+      "title": "准备好揭开您的命运之谜了吗？",
+      "button": "免费开始解读"
+    }
+  },
+  "fortune": {
+    "title": "命理解读",
+    "subtitle": "输入您的出生信息，获取个性化分析",
+    "form": {
+      "name": "您的姓名",
+      "namePlaceholder": "请输入您的姓名",
+      "birthDate": "出生日期",
+      "birthTime": "出生时辰",
+      "gender": "性别",
+      "male": "男",
+      "female": "女",
+      "calculate": "揭秘命运",
+      "calculating": "分析中..."
+    },
+    "errors": {
+      "nameRequired": "请输入您的姓名",
+      "dateRequired": "请选择您的出生日期"
+    },
+    "report": {
+      "title": "命理报告",
+      "bazi": {
+        "title": "生辰八字",
+        "year": "年柱",
+        "month": "月柱",
+        "day": "日柱",
+        "time": "时柱"
+      },
+      "wuxing": {
+        "title": "五行分析",
+        "metal": "金",
+        "wood": "木",
+        "water": "水",
+        "fire": "火",
+        "earth": "土"
+      },
+      "elements": {
+        "strong": "旺",
+        "weak": "弱",
+        "balanced": "平衡"
+      },
+      "chart": {
+        "title": "五行分布"
+      }
+    },
+    "master": {
+      "title": "大师答疑",
+      "desc": "向大师请教您的困惑",
+      "button": "开始对话"
+    },
+    "artifacts": {
+      "title": "法器推荐",
+      "desc": "根据您的命理推荐适合的法器",
+      "view": "查看推荐"
+    }
+  },
+  "master": {
+    "title": "大师答疑",
+    "subtitle": "向大师请教您的困惑",
+    "placeholder": "向大师提问...",
+    "send": "发送",
+    "thinking": "大师正在思考...",
+    "newChat": "新对话"
+  },
+  "artifacts": {
+    "title": "法器推荐",
+    "subtitle": "根据您的命理定制推荐",
+    "bracelet": {
+      "title": "推荐手串",
+      "desc": "精选手串，助运开运"
+    },
+    "pendant": {
+      "title": "推荐吊坠",
+      "desc": "精选吊坠，彰显品位"
+    },
+    "material": {
+      "cinnabar": "朱砂",
+      "crystal": "水晶",
+      "amber": "蜜蜡",
+      "garnet": "石榴石",
+      "obsidian": "黑曜石",
+      "jade": "翡翠"
+    }
+  }
+}

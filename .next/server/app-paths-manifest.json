@@ -1,0 +1,8 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/chat/route": "app/api/chat/route.js",
+  "/[locale]/artifacts/page": "app/[locale]/artifacts/page.js",
+  "/[locale]/fortune/page": "app/[locale]/fortune/page.js",
+  "/[locale]/page": "app/[locale]/page.js",
+  "/[locale]/master/page": "app/[locale]/master/page.js"
+}
