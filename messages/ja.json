@@ -15,6 +15,7 @@
     },
     "features": {
       "title": "天機閣の特徴",
+      "subtitle": "伝統的な知恵とモダンな技術を融合し、最も正確な占いを提供",
       "items": [
         {
           "icon": "sparkles",
@@ -40,7 +41,17 @@
     },
     "cta": {
       "title": "運命を知りたいですか？",
+      "subtitle": "今日から運命探索の旅を始め、運命揭开謎いましょう",
       "button": "無料で始める"
+    },
+    "howItWorks": {
+      "title": "三つのステップ",
+      "subtitle": "三つのステップであなたの本格的な運勢レポートを取得",
+      "steps": [
+        { "title": "情報を入力", "desc": "出生情報を入力", "icon": "user" },
+        { "title": "AI分析", "desc": "八字を智能的に計算", "icon": "sparkles" },
+        { "title": "レポート取得", "desc": "パーソナライズされたガイダンス", "icon": "star" }
+      ]
     }
   },
   "fortune": {
@@ -101,7 +112,13 @@
     "placeholder": "質問を入力...",
     "send": "送信",
     "thinking": "先生在思考中...",
-    "newChat": "新規会話"
+    "newChat": "新規会話",
+    "suggestions": {
+      "wealth": "私の金運はどうですか？",
+      "fortune": "今年の運勢は？",
+      "career": "どんな仕事に向いていますか？",
+      "love": "桃花運を上げる方法は？"
+    }
   },
   "artifacts": {
     "title": "法器おすすめ",

@@ -227,10 +227,10 @@ export default function MasterPage() {
                 className="mt-8 flex flex-wrap justify-center gap-3"
               >
                 {[
-                  '我的财运如何？',
-                  '今年运势怎么样？',
-                  '适合做什么工作？',
-                  '如何提升桃花运？',
+                  t('master.suggestions.wealth'),
+                  t('master.suggestions.fortune'),
+                  t('master.suggestions.career'),
+                  t('master.suggestions.love'),
                 ].map((question, index) => (
                   <motion.button
                     key={index}

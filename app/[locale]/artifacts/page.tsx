@@ -6,6 +6,7 @@ import { Sparkles, Circle, Gem, ArrowRight, Sparkle } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { cn } from '@/lib/utils'
 import { motion } from 'framer-motion'
+import { useSearchParams } from 'next/navigation'
 
 // 材质数据
 const materialsData = {
@@ -66,10 +67,11 @@ const materialsData = {
   },
 }
 
-export default function ArtifactsPage({ searchParams }: { searchParams: { god?: string; locale?: string } }) {
+export default function ArtifactsPage() {
   const t = useTranslations()
-  const god = searchParams?.god || '木'
-  const locale = searchParams?.locale || 'zh'
+  const searchParams = useSearchParams()
+  const god = searchParams?.get('god') || '木'
+  const locale = searchParams?.get('locale') || 'zh'
 
   const materials = materialsData[god as keyof typeof materialsData] || materialsData['木']
 

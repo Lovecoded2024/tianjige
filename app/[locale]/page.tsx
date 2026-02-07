@@ -183,12 +183,11 @@ export default function HomePage({ params: { locale } }: HomePageProps) {
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
             className="mb-16 text-center"
           >
             <h2 className="mb-4 text-4xl font-bold">{t('home.features.title')}</h2>
             <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-              融合传统智慧与现代科技，为您提供最精准的命理服务
+              {t('home.features.subtitle')}
             </p>
           </motion.div>
 
@@ -242,18 +241,14 @@ export default function HomePage({ params: { locale } }: HomePageProps) {
             viewport={{ once: true }}
             className="mb-16 text-center"
           >
-            <h2 className="mb-4 text-4xl font-bold">三步解读命运</h2>
+            <h2 className="mb-4 text-4xl font-bold">{t('home.howItWorks.title')}</h2>
             <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
-              简单三步，即可获得您的专属命理报告
+              {t('home.howItWorks.subtitle')}
             </p>
           </motion.div>
 
           <div className="grid gap-8 md:grid-cols-3">
-            {[
-              { step: '01', title: '输入信息', desc: '填写您的出生信息', icon: UserIcon },
-              { step: '02', title: 'AI分析', desc: '智能计算八字命理', icon: Sparkles },
-              { step: '03', title: '获得报告', desc: '获取专属命运指导', icon: Star },
-            ].map((item, index) => (
+            {t.raw('home.howItWorks.steps').map((step: any, index: number) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 30 }}
@@ -263,13 +258,15 @@ export default function HomePage({ params: { locale } }: HomePageProps) {
                 className="relative text-center"
               >
                 <div className="mb-6 inline-flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-mystic-500/20 to-gold-500/20">
-                  <item.icon className="h-12 w-12 text-mystic-400" />
+                  {step.icon === 'user' && <UserIcon className="h-12 w-12 text-mystic-400" />}
+                  {step.icon === 'sparkles' && <Sparkles className="h-12 w-12 text-mystic-400" />}
+                  {step.icon === 'star' && <Star className="h-12 w-12 text-mystic-400" />}
                 </div>
                 <div className="absolute -top-2 -right-4 text-8xl font-bold text-mystic-500/10">
-                  {item.step}
+                  0{index + 1}
                 </div>
-                <h3 className="mb-2 text-xl font-semibold">{item.title}</h3>
-                <p className="text-muted-foreground">{item.desc}</p>
+                <h3 className="mb-2 text-xl font-semibold">{step.title}</h3>
+                <p className="text-muted-foreground">{step.desc}</p>
               </motion.div>
             ))}
           </div>
@@ -318,7 +315,7 @@ export default function HomePage({ params: { locale } }: HomePageProps) {
                 transition={{ delay: 0.2 }}
                 className="mx-auto mb-10 max-w-xl text-lg text-mystic-100"
               >
-                立即开始您的命理探索之旅，了解您的命运走向
+                {t('home.cta.subtitle')}
               </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}

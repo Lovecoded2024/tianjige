@@ -15,6 +15,7 @@
     },
     "features": {
       "title": "天机阁特色",
+      "subtitle": "融合传统智慧与现代科技，为您提供最精准的命理服务",
       "items": [
         {
           "icon": "sparkles",
@@ -40,7 +41,17 @@
     },
     "cta": {
       "title": "准备好揭开您的命运之谜了吗？",
+      "subtitle": "立即开始您的命理探索之旅，了解您的命运走向",
       "button": "免费开始解读"
+    },
+    "howItWorks": {
+      "title": "三步解读命运",
+      "subtitle": "简单三步，即可获得您的专属命理报告",
+      "steps": [
+        { "title": "输入信息", "desc": "填写您的出生信息", "icon": "user" },
+        { "title": "AI分析", "desc": "智能计算八字命理", "icon": "sparkles" },
+        { "title": "获得报告", "desc": "获取专属命运指导", "icon": "star" }
+      ]
     }
   },
   "fortune": {
@@ -104,7 +115,13 @@
     "placeholder": "向大师提问...",
     "send": "发送",
     "thinking": "大师正在思考...",
-    "newChat": "新对话"
+    "newChat": "新对话",
+    "suggestions": {
+      "wealth": "我的财运如何？",
+      "fortune": "今年运势怎么样？",
+      "career": "适合做什么工作？",
+      "love": "如何提升桃花运？"
+    }
   },
   "artifacts": {
     "title": "法器推荐",

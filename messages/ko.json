@@ -15,6 +15,7 @@
     },
     "features": {
       "title": "천기각의 특징",
+      "subtitle": "전통 지혜와 현대 기술의 결합으로 가장 정확한 운세 분석을 제공",
       "items": [
         {
           "icon": "sparkles",
@@ -40,7 +41,17 @@
     },
     "cta": {
       "title": "운명을 알고 싶으신가요?",
+      "subtitle": "오늘부터 운세 탐험의 여정을 시작하고 운명의 비밀을 밝혀보세요",
       "button": "무료로 시작하기"
+    },
+    "howItWorks": {
+      "title": "세 가지 단계",
+      "subtitle": "세 가지 간단한 단계로 나만의 운세 리포트 받기",
+      "steps": [
+        { "title": "정보 입력", "desc": "출생 정보를 입력하세요", "icon": "user" },
+        { "title": "AI 분석", "desc": "智能八字 계산", "icon": "sparkles" },
+        { "title": "리포트 받기", "desc": "맞춤형 안내 받기", "icon": "star" }
+      ]
     }
   },
   "fortune": {
@@ -101,7 +112,13 @@
     "placeholder": "질문을 입력하세요...",
     "send": "전송",
     "thinking": "스승님이 생각 중...",
-    "newChat": "새 대화"
+    "newChat": "새 대화",
+    "suggestions": {
+      "wealth": "제 금전운은 어떤가요?",
+      "fortune": "올해 운세는 어떠세요?",
+      "career": "어떤 일에 적합할까요?",
+      "love": "연애운을 높이는 방법은?"
+    }
   },
   "artifacts": {
     "title": "법기 추천",

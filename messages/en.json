@@ -15,6 +15,7 @@
     },
     "features": {
       "title": "Why Choose TianJiGe",
+      "subtitle": "Fusing traditional wisdom with modern technology for the most accurate fortune analysis",
       "items": [
         {
           "icon": "sparkles",
@@ -40,7 +41,17 @@
     },
     "cta": {
       "title": "Ready to Discover Your Destiny?",
+      "subtitle": "Start your fortune exploration journey today and uncover your destiny",
       "button": "Start Free Reading"
+    },
+    "howItWorks": {
+      "title": "Three Steps to Your Destiny",
+      "subtitle": "Simple three steps to get your personalized fortune report",
+      "steps": [
+        { "title": "Enter Info", "desc": "Fill in your birth details", "icon": "user" },
+        { "title": "AI Analysis", "desc": "Intelligent BaZi calculation", "icon": "sparkles" },
+        { "title": "Get Report", "desc": "Receive personalized guidance", "icon": "star" }
+      ]
     }
   },
   "fortune": {
@@ -104,7 +115,13 @@
     "placeholder": "Ask the master...",
     "send": "Send",
     "thinking": "Master is thinking...",
-    "newChat": "New Conversation"
+    "newChat": "New Conversation",
+    "suggestions": {
+      "wealth": "How's my wealth luck this year?",
+      "fortune": "What's my fortune like?",
+      "career": "What career suits me best?",
+      "love": "How can I improve my love life?"
+    }
   },
   "artifacts": {
     "title": "Recommended Artifacts",
