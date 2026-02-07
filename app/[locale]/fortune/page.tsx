@@ -102,8 +102,8 @@ export default function FortunePage() {
 
   if (showResult && fortuneData) {
     return (
-      <div className="min-h-screen py-12">
-        <div className="container px-4">
+      <div className="min-h-screen gradient-bg py-12">
+        <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -112,7 +112,7 @@ export default function FortunePage() {
             <Button
               variant="ghost"
               onClick={() => setShowResult(false)}
-              className="text-mystic-400 hover:text-mystic-300"
+              className="text-primary hover:text-primary/80"
             >
               ← {t('nav.fortune')}
             </Button>
@@ -123,24 +123,24 @@ export default function FortunePage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.1 }}
-            className="mb-12 text-center"
+            className="text-center mb-12"
           >
             <motion.div
               initial={{ scale: 0 }}
               animate={{ scale: 1 }}
               transition={{ type: 'spring', delay: 0.2 }}
-              className="mx-auto mb-4 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-mystic-500/20 to-gold-500/20"
+              className="w-24 h-24 mx-auto mb-6 rounded-full glass-card flex items-center justify-center"
             >
-              <Sparkles className="h-10 w-10 text-mystic-400" />
+              <Sparkles className="w-12 h-12 text-primary animate-glow" />
             </motion.div>
-            <h1 className="mb-4 text-4xl font-bold gradient-text">
-              {t('fortune.report.title')}
+            <h1 className="text-4xl sm:text-5xl font-bold mb-4">
+              <span className="text-gradient">{t('fortune.report.title')}</span>
             </h1>
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.3 }}
-              className="text-lg text-muted-foreground"
+              className="text-xl text-muted-foreground"
             >
               {formatBazi(fortuneData.bazi)}
             </motion.p>
@@ -151,7 +151,7 @@ export default function FortunePage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.4 }}
-            className="mb-12 grid gap-4 sm:grid-cols-2 lg:grid-cols-4"
+            className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 mb-12"
           >
             {pillarLabels.map((pillar, index) => {
               const pillarData = fortuneData.bazi[pillar.key as keyof typeof fortuneData.bazi]
@@ -162,16 +162,16 @@ export default function FortunePage() {
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 + index * 0.1 }}
                   whileHover={{ y: -5, scale: 1.02 }}
-                  className="pillar-card relative overflow-hidden rounded-2xl border border-mystic-500/30 bg-gradient-to-br from-card to-mystic-500/5 p-6 text-center"
+                  className="glass-card card-hover p-6 text-center relative overflow-hidden"
                 >
-                  <div className="absolute inset-0 bg-gradient-to-br from-mystic-500/5 to-transparent" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-secondary/5 opacity-0 transition-opacity" />
                   <p className="relative mb-4 text-sm text-muted-foreground">{pillar.label}</p>
                   <div className="relative space-y-3">
                     <motion.div
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ delay: 0.6 + index * 0.1, type: 'spring' }}
-                      className="text-4xl font-bold text-mystic-400"
+                      className="text-5xl font-bold text-primary"
                     >
                       {pillarData.tiangan}
                     </motion.div>
@@ -179,10 +179,10 @@ export default function FortunePage() {
                       initial={{ scale: 0 }}
                       animate={{ scale: 1 }}
                       transition={{ delay: 0.7 + index * 0.1, type: 'spring' }}
-                      className="text-3xl"
+                      className="text-4xl"
                     >
                       {pillarData.dizhi}
-                      <span className="ml-2 text-sm text-muted-foreground">
+                      <span className="ml-2 text-base text-muted-foreground">
                         ({SHENGXIAO[pillarData.dizhi as keyof typeof SHENGXIAO]})
                       </span>
                     </motion.div>
@@ -192,8 +192,7 @@ export default function FortunePage() {
                       transition={{ delay: 0.8 + index * 0.1 }}
                       className="text-sm text-muted-foreground"
                     >
-                      {WUXING[pillarData.tiangan as keyof typeof WUXING]}
-                      {WUXING[pillarData.dizhi as keyof typeof WUXING]}
+                      {WUXING[pillarData.tiangan as keyof typeof WUXING]}{WUXING[pillarData.dizhi as keyof typeof WUXING]}
                     </motion.div>
                   </div>
                 </motion.div>
@@ -206,16 +205,16 @@ export default function FortunePage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.9 }}
-            className="grid gap-8 lg:grid-cols-2"
+            className="grid gap-8 lg:grid-cols-2 mb-12"
           >
             {/* Element Distribution */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ delay: 1 }}
-              className="relative overflow-hidden rounded-2xl border border-mystic-500/30 bg-gradient-to-br from-card to-mystic-500/5 p-8"
+              className="glass-card p-8 relative overflow-hidden"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-mystic-500/5 to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent" />
               <h2 className="relative mb-8 text-2xl font-bold">{t('fortune.report.wuxing.title')}</h2>
               <div className="relative space-y-6">
                 {Object.entries(fortuneData.wuxing).map(([element, count], index) => (
@@ -230,9 +229,9 @@ export default function FortunePage() {
                       <span className={cn('font-medium', wuxingColors[element as Wuxing])}>
                         {t(`fortune.report.wuxing.${element.toLowerCase()}`)}
                       </span>
-                      <span className="text-muted-foreground">{count as number}个</span>
+                      <span className="text-muted-foreground">{count as number}</span>
                     </div>
-                    <div className="h-4 overflow-hidden rounded-full bg-muted/50">
+                    <div className="h-3 overflow-hidden rounded-full bg-white/10">
                       <motion.div
                         initial={{ width: 0 }}
                         animate={{ width: `${((count as number) / 8) * 100}%` }}
@@ -259,14 +258,14 @@ export default function FortunePage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.2 }}
-                className="relative overflow-hidden rounded-xl bg-gradient-to-r from-green-500/10 to-emerald-500/10 p-6"
+                className="glass-card p-6 relative overflow-hidden"
               >
-                <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-green-500/20 blur-3xl" />
-                <p className="relative mb-2 text-sm text-muted-foreground">您的喜用神</p>
-                <p className="relative text-3xl font-bold text-green-400">
+                <div className="absolute -right-8 -top-8 w-32 h-32 rounded-full bg-green-500/10 blur-3xl" />
+                <p className="relative mb-2 text-sm text-muted-foreground">喜用神</p>
+                <p className="relative text-4xl font-bold text-green-400">
                   {fortuneData.god.usefulGod}（{WUXING[fortuneData.god.usefulGod[0] as keyof typeof WUXING]}）
                 </p>
-                <p className="relative mt-2 text-sm text-muted-foreground">
+                <p className="relative mt-3 text-sm text-muted-foreground">
                   您的八字中{fortuneData.god.weakElement}较弱，{fortuneData.god.usefulGod}能补充您的能量
                 </p>
               </motion.div>
@@ -275,14 +274,14 @@ export default function FortunePage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 1.3 }}
-                className="relative overflow-hidden rounded-xl bg-gradient-to-r from-red-500/10 to-orange-500/10 p-6"
+                className="glass-card p-6 relative overflow-hidden"
               >
-                <div className="absolute -right-8 -top-8 h-24 w-24 rounded-full bg-red-500/20 blur-3xl" />
-                <p className="relative mb-2 text-sm text-muted-foreground">您的忌神</p>
-                <p className="relative text-3xl font-bold text-red-400">
+                <div className="absolute -right-8 -top-8 w-32 h-32 rounded-full bg-red-500/10 blur-3xl" />
+                <p className="relative mb-2 text-sm text-muted-foreground">忌神</p>
+                <p className="relative text-4xl font-bold text-red-400">
                   {fortuneData.god.outputGod}（{WUXING[fortuneData.god.outputGod[0] as keyof typeof WUXING]}）
                 </p>
-                <p className="relative mt-2 text-sm text-muted-foreground">
+                <p className="relative mt-3 text-sm text-muted-foreground">
                   建议避免过多接触{fortuneData.god.outputGod}属性的物品
                 </p>
               </motion.div>
@@ -294,24 +293,20 @@ export default function FortunePage() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 1.4 }}
-            className="mt-12 grid gap-4 sm:grid-cols-2"
+            className="grid gap-4 sm:grid-cols-2"
           >
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Link href={`/${locale}/artifacts?god=${fortuneData.god.usefulGod}`}>
-                <Button size="lg" variant="mystic" className="w-full py-6 text-lg">
-                  <Sparkles className="mr-2 h-5 w-5" />
+                <Button size="lg" className="w-full btn-primary">
+                  <Sparkles className="w-5 h-5 mr-2" />
                   {t('fortune.artifacts.view')}
                 </Button>
               </Link>
             </motion.div>
             <motion.div whileHover={{ scale: 1.02 }} whileTap={{ scale: 0.98 }}>
               <Link href={`/${locale}/master`}>
-                <Button
-                  size="lg"
-                  variant="outline"
-                  className="w-full border-mystic-500/30 py-6 text-lg"
-                >
-                  <MessageCircle className="mr-2 h-5 w-5" />
+                <Button size="lg" variant="outline" className="w-full btn-secondary">
+                  <MessageCircle className="w-5 h-5 mr-2" />
                   {t('fortune.master.button')}
                 </Button>
               </Link>
@@ -323,8 +318,8 @@ export default function FortunePage() {
   }
 
   return (
-    <div className="min-h-screen py-12">
-      <div className="container px-4">
+    <div className="min-h-screen gradient-bg py-12">
+      <div className="container-custom">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -332,20 +327,22 @@ export default function FortunePage() {
         >
           {/* Title */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.9 }}
+            initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5 }}
-            className="mb-12 text-center"
+            className="text-center mb-12"
           >
             <motion.div
               animate={{ rotate: 360 }}
               transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
-              className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-mystic-500/20 to-gold-500/20"
+              className="w-24 h-24 mx-auto mb-6 rounded-full glass-card flex items-center justify-center"
             >
-              <Sparkles className="h-10 w-10 text-mystic-400" />
+              <Sparkles className="w-12 h-12 text-primary animate-pulse" />
             </motion.div>
-            <h1 className="mb-4 text-4xl font-bold gradient-text">{t('fortune.title')}</h1>
-            <p className="text-muted-foreground">{t('fortune.subtitle')}</p>
+            <h1 className="text-4xl sm:text-5xl font-bold mb-4">
+              <span className="text-gradient">{t('fortune.title')}</span>
+            </h1>
+            <p className="text-lg text-muted-foreground">{t('fortune.subtitle')}</p>
           </motion.div>
 
           {/* Form */}
@@ -364,13 +361,13 @@ export default function FortunePage() {
               className="space-y-2"
             >
               <label className="flex items-center text-sm font-medium">
-                <User className="mr-2 h-4 w-4 text-mystic-400" />
+                <User className="w-4 h-4 mr-2 text-primary" />
                 {t('fortune.form.name')}
               </label>
               <input
                 {...register('name')}
                 placeholder={t('fortune.form.namePlaceholder')}
-                className="w-full rounded-xl border border-mystic-500/30 bg-card/50 px-4 py-4 text-foreground placeholder:text-muted-foreground focus:border-mystic-500 focus:outline-none focus:ring-2 focus:ring-mystic-500/20 transition-all"
+                className="input-field"
               />
               {errors.name && (
                 <motion.p
@@ -392,15 +389,15 @@ export default function FortunePage() {
             >
               <div className="space-y-2">
                 <label className="flex items-center text-sm font-medium">
-                  <Calendar className="mr-2 h-4 w-4 text-mystic-400" />
+                  <Calendar className="w-4 h-4 mr-2 text-primary" />
                   {t('fortune.form.birthDate')}
                 </label>
                 <select
                   {...register('year', { valueAsNumber: true })}
-                  className="w-full rounded-xl border border-mystic-500/30 bg-card/50 px-4 py-4 focus:border-mystic-500 focus:outline-none"
+                  className="select-field"
                 >
                   {Array.from({ length: 124 }, (_, i) => 1900 + i).map((year) => (
-                    <option key={year} value={year}>
+                    <option key={year} value={year} className="bg-card">
                       {year}年
                     </option>
                   ))}
@@ -410,10 +407,10 @@ export default function FortunePage() {
                 <label className="text-sm font-medium">&nbsp;</label>
                 <select
                   {...register('month', { valueAsNumber: true })}
-                  className="w-full rounded-xl border border-mystic-500/30 bg-card/50 px-4 py-4 focus:border-mystic-500 focus:outline-none"
+                  className="select-field"
                 >
                   {Array.from({ length: 12 }, (_, i) => i + 1).map((month) => (
-                    <option key={month} value={month}>
+                    <option key={month} value={month} className="bg-card">
                       {month}月
                     </option>
                   ))}
@@ -423,10 +420,10 @@ export default function FortunePage() {
                 <label className="text-sm font-medium">&nbsp;</label>
                 <select
                   {...register('day', { valueAsNumber: true })}
-                  className="w-full rounded-xl border border-mystic-500/30 bg-card/50 px-4 py-4 focus:border-mystic-500 focus:outline-none"
+                  className="select-field"
                 >
                   {Array.from({ length: 31 }, (_, i) => i + 1).map((day) => (
-                    <option key={day} value={day}>
+                    <option key={day} value={day} className="bg-card">
                       {day}日
                     </option>
                   ))}
@@ -442,15 +439,15 @@ export default function FortunePage() {
               className="space-y-2"
             >
               <label className="flex items-center text-sm font-medium">
-                <Clock className="mr-2 h-4 w-4 text-mystic-400" />
+                <Clock className="w-4 h-4 mr-2 text-primary" />
                 {t('fortune.form.birthTime')}
               </label>
               <select
                 {...register('hour', { valueAsNumber: true })}
-                className="w-full rounded-xl border border-mystic-500/30 bg-card/50 px-4 py-4 focus:border-mystic-500 focus:outline-none"
+                className="select-field"
               >
                 {Array.from({ length: 24 }, (_, i) => i).map((hour) => (
-                  <option key={hour} value={hour}>
+                  <option key={hour} value={hour} className="bg-card">
                     {hour.toString().padStart(2, '0')}:00
                   </option>
                 ))}
@@ -471,7 +468,7 @@ export default function FortunePage() {
                     type="radio"
                     {...register('gender')}
                     value="male"
-                    className="h-4 w-4 text-mystic-500"
+                    className="w-4 h-4 text-primary"
                   />
                   <span className="flex items-center">
                     <span className="mr-1">♂</span> {t('fortune.form.male')}
@@ -482,7 +479,7 @@ export default function FortunePage() {
                     type="radio"
                     {...register('gender')}
                     value="female"
-                    className="h-4 w-4 text-mystic-500"
+                    className="w-4 h-4 text-primary"
                   />
                   <span className="flex items-center">
                     <span className="mr-1">♀</span> {t('fortune.form.female')}
@@ -502,22 +499,21 @@ export default function FortunePage() {
               <Button
                 type="submit"
                 size="lg"
-                variant="mystic"
                 disabled={isCalculating}
-                className="w-full py-6 text-lg"
+                className="w-full btn-primary text-lg"
               >
                 {isCalculating ? (
                   <div className="flex items-center">
                     <motion.div
                       animate={{ rotate: 360 }}
                       transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
-                      className="mr-2 h-5 w-5 rounded-full border-2 border-white/30 border-t-white"
+                      className="w-5 h-5 rounded-full border-2 border-white/30 border-t-white mr-2"
                     />
                     {t('fortune.form.calculating')}
                   </div>
                 ) : (
                   <div className="flex items-center">
-                    <Sparkles className="mr-2 h-5 w-5" />
+                    <Sparkles className="w-5 h-5 mr-2" />
                     {t('fortune.form.calculate')}
                   </div>
                 )}
@@ -549,14 +545,14 @@ export default function FortunePage() {
                       rotate: { duration: 2, repeat: Infinity, ease: 'linear' },
                       scale: { duration: 1, repeat: Infinity },
                     }}
-                    className="mx-auto mb-6 flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-mystic-500/20 to-gold-500/20"
+                    className="w-24 h-24 mx-auto mb-6 rounded-full glass-card flex items-center justify-center"
                   >
-                    <Sparkles className="h-12 w-12 text-mystic-400" />
+                    <Sparkles className="w-12 h-12 text-primary" />
                   </motion.div>
-                  <p className="text-xl font-medium text-mystic-400">
+                  <p className="text-xl font-medium text-primary mb-2">
                     {t('fortune.form.calculating')}
                   </p>
-                  <p className="mt-2 text-sm text-muted-foreground">
+                  <p className="text-sm text-muted-foreground">
                     大师正在推演您的命理...
                   </p>
                 </motion.div>

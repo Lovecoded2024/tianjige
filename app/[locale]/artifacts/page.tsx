@@ -86,41 +86,41 @@ export default function ArtifactsPage() {
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30, scale: 0.9 },
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
     visible: {
       opacity: 1,
       y: 0,
       scale: 1,
       transition: {
         type: 'spring',
-        stiffness: 100,
+        stiffness: 80,
         damping: 20,
       },
     },
   }
 
   return (
-    <div className="min-h-screen py-12">
-      <div className="container px-4">
+    <div className="min-h-screen gradient-bg py-12">
+      <div className="container-custom">
         {/* Title */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          className="mb-12 text-center"
+          className="text-center mb-12"
         >
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ type: 'spring', delay: 0.2 }}
-            className="mx-auto mb-6 flex h-20 w-20 items-center justify-center rounded-full bg-gradient-to-br from-gold-500/20 to-mystic-500/20"
+            className="w-20 h-20 mx-auto mb-6 rounded-full glass-card flex items-center justify-center"
           >
-            <Sparkles className="h-10 w-10 text-gold-400" />
+            <Sparkles className="w-10 h-10 text-secondary animate-glow" />
           </motion.div>
-          <h1 className="mb-4 text-4xl font-bold gradient-text">
-            {t('artifacts.title')}
+          <h1 className="text-4xl sm:text-5xl font-bold mb-4">
+            <span className="text-gradient">{t('artifacts.title')}</span>
           </h1>
           <p className="text-lg text-muted-foreground">
-            {t('artifacts.subtitle')} - <span className="text-gold-400">{god}属性</span>
+            {t('artifacts.subtitle')} - <span className="text-secondary font-semibold">{god}属性</span>
           </p>
         </motion.div>
 
@@ -131,13 +131,13 @@ export default function ArtifactsPage() {
           transition={{ delay: 0.3 }}
           className="mb-16"
         >
-          <div className="mb-8 flex items-center space-x-4">
+          <div className="flex items-center space-x-4 mb-8">
             <motion.div
               whileHover={{ rotate: 180 }}
               transition={{ duration: 0.3 }}
-              className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-mystic-500/20 to-purple-600/20"
+              className="w-14 h-14 rounded-xl glass-card flex items-center justify-center"
             >
-              <Circle className="h-7 w-7 text-mystic-400" />
+              <Circle className="w-7 h-7 text-primary" />
             </motion.div>
             <div>
               <h2 className="text-2xl font-bold">{t('artifacts.bracelet.title')}</h2>
@@ -156,10 +156,10 @@ export default function ArtifactsPage() {
                 key={index}
                 variants={itemVariants}
                 whileHover={{ y: -8, scale: 1.02 }}
-                className="group relative overflow-hidden rounded-2xl border border-mystic-500/20 bg-gradient-to-br from-card to-mystic-500/5 p-6 transition-all hover:border-mystic-500/40 hover:shadow-2xl hover:shadow-mystic-500/10"
+                className="glass-card card-hover p-6 relative overflow-hidden group cursor-pointer"
               >
                 {/* Background Glow */}
-                <div className={`absolute -right-8 -top-8 h-32 w-32 rounded-full bg-gradient-to-br ${item.color} opacity-10 blur-3xl transition-opacity group-hover:opacity-20`} />
+                <div className={`absolute -right-8 -top-8 w-32 h-32 rounded-full bg-gradient-to-br ${item.color} opacity-10 blur-3xl transition-opacity group-hover:opacity-20`} />
 
                 <div className="relative mb-4 flex items-start justify-between">
                   <div>
@@ -193,9 +193,9 @@ export default function ArtifactsPage() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.2 }}
-                  className="relative flex items-center text-sm text-gold-400"
+                  className="relative flex items-center text-sm text-secondary"
                 >
-                  <Sparkle className="mr-1 h-4 w-4" />
+                  <Sparkle className="w-4 h-4 mr-1" />
                   适合{god}属性人群
                 </motion.div>
 
@@ -204,7 +204,7 @@ export default function ArtifactsPage() {
                   initial={{ scaleX: 0 }}
                   whileHover={{ scaleX: 1 }}
                   transition={{ duration: 0.3 }}
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-mystic-500 to-gold-500"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-primary to-secondary"
                 />
               </motion.div>
             ))}
@@ -218,13 +218,13 @@ export default function ArtifactsPage() {
           transition={{ delay: 0.5 }}
           className="mb-16"
         >
-          <div className="mb-8 flex items-center space-x-4">
+          <div className="flex items-center space-x-4 mb-8">
             <motion.div
               whileHover={{ rotate: 180 }}
               transition={{ duration: 0.3 }}
-              className="flex h-14 w-14 items-center justify-center rounded-xl bg-gradient-to-br from-gold-500/20 to-yellow-600/20"
+              className="w-14 h-14 rounded-xl glass-card flex items-center justify-center"
             >
-              <Gem className="h-7 w-7 text-gold-400" />
+              <Gem className="w-7 h-7 text-secondary" />
             </motion.div>
             <div>
               <h2 className="text-2xl font-bold">{t('artifacts.pendant.title')}</h2>
@@ -243,10 +243,10 @@ export default function ArtifactsPage() {
                 key={index}
                 variants={itemVariants}
                 whileHover={{ y: -8, scale: 1.02 }}
-                className="group relative overflow-hidden rounded-2xl border border-gold-500/20 bg-gradient-to-br from-card to-gold-500/5 p-6 transition-all hover:border-gold-500/40 hover:shadow-2xl hover:shadow-gold-500/10"
+                className="glass-card card-hover p-6 relative overflow-hidden group cursor-pointer"
               >
                 {/* Background Glow */}
-                <div className={`absolute -right-8 -top-8 h-32 w-32 rounded-full bg-gradient-to-br ${item.color} opacity-10 blur-3xl transition-opacity group-hover:opacity-20`} />
+                <div className={`absolute -right-8 -top-8 w-32 h-32 rounded-full bg-gradient-to-br ${item.color} opacity-10 blur-3xl transition-opacity group-hover:opacity-20`} />
 
                 <div className="relative mb-4 flex items-start justify-between">
                   <div>
@@ -280,9 +280,9 @@ export default function ArtifactsPage() {
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ delay: 0.2 }}
-                  className="relative flex items-center text-sm text-gold-400"
+                  className="relative flex items-center text-sm text-secondary"
                 >
-                  <Sparkle className="mr-1 h-4 w-4" />
+                  <Sparkle className="w-4 h-4 mr-1" />
                   适合{god}属性人群
                 </motion.div>
 
@@ -291,7 +291,7 @@ export default function ArtifactsPage() {
                   initial={{ scaleX: 0 }}
                   whileHover={{ scaleX: 1 }}
                   transition={{ duration: 0.3 }}
-                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-gold-500 to-mystic-500"
+                  className="absolute bottom-0 left-0 right-0 h-0.5 bg-gradient-to-r from-secondary to-primary"
                 />
               </motion.div>
             ))}
@@ -307,8 +307,8 @@ export default function ArtifactsPage() {
         >
           <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
             <Link href={`/${locale}/fortune`}>
-              <Button size="lg" variant="outline" className="border-mystic-500/30 px-8 py-6 text-lg">
-                <ArrowRight className="mr-2 h-5 w-5" />
+              <Button size="lg" variant="outline" className="btn-secondary px-8 py-4 text-lg">
+                <ArrowRight className="w-5 h-5 mr-2" />
                 {t('nav.fortune')}
               </Button>
             </Link>

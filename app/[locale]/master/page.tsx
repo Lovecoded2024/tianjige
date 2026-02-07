@@ -115,80 +115,82 @@ export default function MasterPage() {
   }
 
   return (
-    <div className="flex h-[calc(100vh-4rem)] flex-col">
+    <div className="flex h-[calc(100vh-4rem)] gradient-bg">
       {/* Header */}
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="border-b border-mystic-500/20 bg-gradient-to-r from-card to-mystic-500/5 p-6"
+        className="border-b border-white/10 bg-card/50 backdrop-blur-xl"
       >
-        <div className="container mx-auto flex items-center justify-between">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            animate={{ opacity: 1, x: 0 }}
-            className="flex items-center space-x-4"
-          >
-            <div className="relative">
-              <motion.div
-                animate={{
-                  boxShadow: [
-                    '0 0 20px rgba(139, 92, 246, 0.3)',
-                    '0 0 40px rgba(139, 92, 246, 0.5)',
-                    '0 0 20px rgba(139, 92, 246, 0.3)',
-                  ],
-                }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="flex h-14 w-14 items-center justify-center rounded-full bg-gradient-to-br from-mystic-500/20 to-gold-500/20"
-              >
-                <Sparkles className="h-7 w-7 text-mystic-400" />
-              </motion.div>
-              <motion.div
-                animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
-                transition={{ duration: 2, repeat: Infinity }}
-                className="absolute -bottom-1 -right-1 h-5 w-5 rounded-full bg-green-500 ring-2 ring-background"
-              />
-            </div>
-            <div>
-              <motion.h1
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="text-xl font-semibold"
-              >
-                天机阁大师
-              </motion.h1>
-              <motion.p
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.1 }}
-                className="text-xs text-muted-foreground"
-              >
-                AI智能 · 随时在线 · 精通易经
-              </motion.p>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            animate={{ opacity: 1, x: 0 }}
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <Button
-              variant="outline"
-              size="sm"
-              onClick={() => setMessages([welcomeMessage])}
-              className="border-mystic-500/30"
+        <div className="container-custom py-4">
+          <div className="flex items-center justify-between">
+            <motion.div
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="flex items-center space-x-4"
             >
-              <Plus className="mr-2 h-4 w-4" />
-              {t('master.newChat')}
-            </Button>
-          </motion.div>
+              <div className="relative">
+                <motion.div
+                  animate={{
+                    boxShadow: [
+                      '0 0 20px rgba(139, 92, 246, 0.3)',
+                      '0 0 40px rgba(139, 92, 246, 0.5)',
+                      '0 0 20px rgba(139, 92, 246, 0.3)',
+                    ],
+                  }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="w-12 h-12 rounded-full glass-card flex items-center justify-center"
+                >
+                  <Sparkles className="w-6 h-6 text-primary" />
+                </motion.div>
+                <motion.div
+                  animate={{ scale: [1, 1.2, 1], opacity: [0.5, 1, 0.5] }}
+                  transition={{ duration: 2, repeat: Infinity }}
+                  className="absolute -bottom-1 -right-1 w-4 h-4 rounded-full bg-green-500 ring-2 ring-card"
+                />
+              </div>
+              <div>
+                <motion.h1
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-lg font-semibold"
+                >
+                  天机阁大师
+                </motion.h1>
+                <motion.p
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ delay: 0.1 }}
+                  className="text-xs text-muted-foreground"
+                >
+                  AI智能 · 随时在线 · 精通易经
+                </motion.p>
+              </div>
+            </motion.div>
+
+            <motion.div
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+            >
+              <Button
+                variant="outline"
+                size="sm"
+                onClick={() => setMessages([welcomeMessage])}
+                className="border-white/20"
+              >
+                <Plus className="w-4 h-4 mr-2" />
+                {t('master.newChat')}
+              </Button>
+            </motion.div>
+          </div>
         </div>
       </motion.div>
 
       {/* Messages */}
       <div className="flex-1 overflow-y-auto p-6">
-        <div className="container mx-auto max-w-3xl space-y-6">
+        <div className="container-custom max-w-4xl">
           {messages.length === 0 && (
             <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
@@ -200,23 +202,23 @@ export default function MasterPage() {
                   rotate: [0, 10, -10, 0],
                 }}
                 transition={{ duration: 3, repeat: Infinity }}
-                className="mx-auto mb-6 rounded-full bg-gradient-to-br from-mystic-500/20 to-gold-500/20 p-8"
+                className="w-24 h-24 mb-8 rounded-full glass-card flex items-center justify-center"
               >
-                <MessageCircle className="h-16 w-16 text-mystic-400" />
+                <MessageCircle className="w-12 h-12 text-primary" />
               </motion.div>
               <motion.h2
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.1 }}
-                className="mb-3 text-2xl font-bold gradient-text"
+                className="text-3xl font-bold mb-4"
               >
-                {t('master.title')}
+                <span className="text-gradient">{t('master.title')}</span>
               </motion.h2>
               <motion.p
                 initial={{ opacity: 0 }}
                 animate={{ opacity: 1 }}
                 transition={{ delay: 0.2 }}
-                className="max-w-md text-muted-foreground"
+                className="text-muted-foreground max-w-md mb-8"
               >
                 {t('master.subtitle')}
               </motion.p>
@@ -224,7 +226,7 @@ export default function MasterPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.3 }}
-                className="mt-8 flex flex-wrap justify-center gap-3"
+                className="flex flex-wrap justify-center gap-3"
               >
                 {[
                   t('master.suggestions.wealth'),
@@ -237,7 +239,7 @@ export default function MasterPage() {
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setInput(question)}
-                    className="rounded-full border border-mystic-500/30 bg-mystic-500/10 px-4 py-2 text-sm text-mystic-400 transition-colors hover:bg-mystic-500/20"
+                    className="px-4 py-2 rounded-full glass-card text-sm text-primary hover:bg-primary/10 transition-colors"
                   >
                     {question}
                   </motion.button>
@@ -247,7 +249,7 @@ export default function MasterPage() {
           )}
 
           <AnimatePresence>
-            {messages.map((message, index) => (
+            {messages.map((message) => (
               <motion.div
                 key={message.id}
                 variants={messageVariants}
@@ -255,7 +257,7 @@ export default function MasterPage() {
                 animate="visible"
                 exit={{ opacity: 0, y: -20 }}
                 className={cn(
-                  'flex space-x-4',
+                  'flex space-x-4 mb-6',
                   message.role === 'user' && 'flex-row-reverse'
                 )}
               >
@@ -265,16 +267,16 @@ export default function MasterPage() {
                   animate={{ scale: 1 }}
                   transition={{ type: 'spring', delay: 0.1 }}
                   className={cn(
-                    'flex h-12 w-12 shrink-0 items-center justify-center rounded-full',
+                    'w-10 h-10 rounded-full flex items-center justify-center flex-shrink-0',
                     message.role === 'assistant'
-                      ? 'bg-gradient-to-br from-mystic-500/30 to-purple-600/30'
-                      : 'bg-gradient-to-br from-gray-500/30 to-gray-600/30'
+                      ? 'glass-card'
+                      : 'bg-gradient-to-br from-primary/30 to-purple-600/30'
                   )}
                 >
                   {message.role === 'assistant' ? (
-                    <Sparkles className="h-6 w-6 text-mystic-400" />
+                    <Sparkles className="w-5 h-5 text-primary" />
                   ) : (
-                    <User className="h-6 w-6 text-gray-400" />
+                    <User className="w-5 h-5 text-white" />
                   )}
                 </motion.div>
 
@@ -284,10 +286,10 @@ export default function MasterPage() {
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.1 }}
                   className={cn(
-                    'max-w-[80%] rounded-2xl px-6 py-4',
+                    'max-w-[75%] rounded-2xl p-5',
                     message.role === 'assistant'
-                      ? 'rounded-tl-sm bg-gradient-to-br from-card to-mystic-500/5 border border-mystic-500/20'
-                      : 'rounded-tr-sm bg-gradient-to-br from-mystic-600 to-purple-600 text-white'
+                      ? 'glass-card rounded-tl-sm'
+                      : 'bg-gradient-to-br from-primary to-purple-600 text-white rounded-tr-sm'
                   )}
                 >
                   <div className="whitespace-pre-wrap leading-relaxed">
@@ -324,10 +326,10 @@ export default function MasterPage() {
               animate={{ opacity: 1, y: 0 }}
               className="flex space-x-4"
             >
-              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-br from-mystic-500/30 to-purple-600/30">
-                <Sparkles className="h-6 w-6 text-mystic-400" />
+              <div className="w-10 h-10 rounded-full glass-card flex items-center justify-center flex-shrink-0">
+                <Sparkles className="w-5 h-5 text-primary" />
               </div>
-              <div className="flex items-center space-x-2 rounded-xl border border-mystic-500/20 bg-card/50 px-6 py-4">
+              <div className="flex items-center space-x-2 glass-card rounded-xl px-5 py-4">
                 {[0, 1, 2].map((i) => (
                   <motion.div
                     key={i}
@@ -337,7 +339,7 @@ export default function MasterPage() {
                       repeat: Infinity,
                       delay: i * 0.2,
                     }}
-                    className="h-3 w-3 rounded-full bg-mystic-400"
+                    className="w-2.5 h-2.5 rounded-full bg-primary"
                   />
                 ))}
               </div>
@@ -352,9 +354,9 @@ export default function MasterPage() {
       <motion.div
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="border-t border-mystic-500/20 bg-gradient-to-r from-card to-mystic-500/5 p-6"
+        className="border-t border-white/10 bg-card/50 backdrop-blur-xl"
       >
-        <div className="container mx-auto max-w-3xl">
+        <div className="container-custom py-4">
           <div className="relative flex items-end space-x-4">
             <motion.div
               whileFocus={{ scale: 1.01 }}
@@ -366,7 +368,7 @@ export default function MasterPage() {
                 onKeyDown={handleKeyDown}
                 placeholder={t('master.placeholder')}
                 rows={1}
-                className="w-full resize-none rounded-2xl border border-mystic-500/30 bg-background/80 px-6 py-4 pr-14 text-foreground placeholder:text-muted-foreground focus:border-mystic-500 focus:outline-none focus:ring-2 focus:ring-mystic-500/20 transition-all"
+                className="input-field resize-none pr-14"
               />
             </motion.div>
 
@@ -374,11 +376,9 @@ export default function MasterPage() {
               <Button
                 onClick={handleSend}
                 disabled={!input.trim() || isLoading}
-                variant="mystic"
-                size="icon"
-                className="h-12 w-12 rounded-full"
+                className="h-12 w-12 rounded-full btn-primary flex-shrink-0"
               >
-                <Send className="h-5 w-5" />
+                <Send className="w-5 h-5" />
               </Button>
             </motion.div>
           </div>

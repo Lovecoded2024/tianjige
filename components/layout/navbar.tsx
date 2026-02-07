@@ -13,6 +13,7 @@ import { useTranslations } from 'next-intl'
 import { Locale, localeNames, localeFlags, locales } from '@/i18n-config'
 import { useRouter, usePathname } from '@/navigation'
 import Link from 'next/link'
+import { motion } from 'framer-motion'
 
 export function Navbar() {
   const t = useTranslations()
@@ -27,64 +28,58 @@ export function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b border-mystic-500/20 bg-background/80 backdrop-blur-lg">
-      <div className="container mx-auto px-4">
+    <header className="sticky top-0 z-50 border-b border-white/10 bg-background/80 backdrop-blur-xl">
+      <div className="container-custom">
         <div className="flex h-16 items-center justify-between">
           {/* Logo */}
           <Link href={`/${currentLocale}`} className="flex items-center space-x-2">
-            <div className="relative">
-              <Sparkles className="h-8 w-8 text-mystic-500" />
-              <div className="absolute -inset-1 animate-pulse-glow rounded-full bg-mystic-500/20" />
-            </div>
-            <span className="hidden text-xl font-bold sm:inline-block gradient-text">
+            <motion.div
+              whileHover={{ rotate: 360 }}
+              transition={{ duration: 0.5 }}
+            >
+              <Sparkles className="h-8 w-8 text-primary" />
+            </motion.div>
+            <span className="hidden text-xl font-bold sm:inline-block text-gradient">
               天机阁
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-6">
-            <Link
-              href={`/${currentLocale}`}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {t('nav.home')}
-            </Link>
-            <Link
-              href={`/${currentLocale}/fortune`}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {t('nav.fortune')}
-            </Link>
-            <Link
-              href={`/${currentLocale}/artifacts`}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {t('nav.artifacts')}
-            </Link>
-            <Link
-              href={`/${currentLocale}/master`}
-              className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-            >
-              {t('nav.master')}
-            </Link>
+          <nav className="hidden md:flex items-center space-x-2">
+            {[
+              { key: 'home', href: `/${currentLocale}` },
+              { key: 'fortune', href: `/${currentLocale}/fortune` },
+              { key: 'artifacts', href: `/${currentLocale}/artifacts` },
+              { key: 'master', href: `/${currentLocale}/master` },
+            ].map((item) => (
+              <Link key={item.key} href={item.href}>
+                <motion.span
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="px-4 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-white/5 transition-colors"
+                >
+                  {t(`nav.${item.key}`)}
+                </motion.span>
+              </Link>
+            ))}
           </nav>
 
           {/* Right Side */}
-          <div className="flex items-center space-x-4">
+          <div className="flex items-center space-x-3">
             {/* Language Switcher */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon">
+                <Button variant="ghost" size="icon" className="rounded-full">
                   <Globe className="h-5 w-5" />
                   <span className="sr-only">{t('nav.language')}</span>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
+              <DropdownMenuContent align="end" className="glass-card border-white/10">
                 {locales.map((locale) => (
                   <DropdownMenuItem
                     key={locale}
                     onClick={() => handleLocaleChange(locale)}
-                    className="flex items-center space-x-2"
+                    className="flex items-center space-x-2 cursor-pointer"
                   >
                     <span>{localeFlags[locale]}</span>
                     <span>{localeNames[locale]}</span>
@@ -98,6 +93,7 @@ export function Navbar() {
               variant="ghost"
               size="icon"
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
+              className="rounded-full"
             >
               <Sun className="h-5 w-5 dark:hidden" />
               <Moon className="hidden h-5 w-5 dark:block" />
@@ -105,7 +101,7 @@ export function Navbar() {
             </Button>
 
             {/* Mobile Menu Button */}
-            <Button variant="ghost" size="icon" className="md:hidden">
+            <Button variant="ghost" size="icon" className="md:hidden rounded-full">
               <svg
                 className="h-5 w-5"
                 fill="none"

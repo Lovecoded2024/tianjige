@@ -8,14 +8,21 @@
   },
   "home": {
     "hero": {
+      "badge": "5000 Years of Wisdom × AI Technology",
       "title": "Unlock Your Destiny",
-      "subtitle": "Ancient wisdom meets AI precision",
+      "subtitle": "Master Your Fate",
       "cta": "Start Reading",
-      "desc": "Discover your destiny through the ancient art of BaZi. AI-powered fortune analysis tailored just for you."
+      "desc": "Discover your destiny through the ancient art of BaZi. AI-powered fortune analysis tailored just for you.",
+      "stats": {
+        "years": "Years of Wisdom",
+        "users": "Users Served",
+        "accuracy": "Accuracy Rate"
+      }
     },
     "features": {
-      "title": "Why Choose TianJiGe",
-      "subtitle": "Fusing traditional wisdom with modern technology for the most accurate fortune analysis",
+      "badge": "Why Choose TianJiGe",
+      "title": "Where Tradition Meets Innovation",
+      "subtitle": "We combine cutting-edge AI technology with 5000 years of Chinese wisdom to provide the most accurate fortune analysis",
       "items": [
         {
           "icon": "sparkles",
@@ -45,6 +52,7 @@
       "button": "Start Free Reading"
     },
     "howItWorks": {
+      "badge": "How It Works",
       "title": "Three Steps to Your Destiny",
       "subtitle": "Simple three steps to get your personalized fortune report",
       "steps": [

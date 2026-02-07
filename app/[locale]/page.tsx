@@ -1,7 +1,7 @@
 'use client'
 
 import Link from 'next/link'
-import { Sparkles, Globe, Zap, Shield, Star, Moon, Sun, ArrowRight } from 'lucide-react'
+import { Sparkles, Globe, Zap, Shield, Star, Moon, Sun, ArrowRight, Sparkle } from 'lucide-react'
 import { useTranslations } from 'next-intl'
 import { Button } from '@/components/ui/button'
 import { motion } from 'framer-motion'
@@ -20,99 +20,124 @@ export default function HomePage({ params: { locale } }: HomePageProps) {
     visible: {
       opacity: 1,
       transition: {
-        staggerChildren: 0.2,
+        staggerChildren: 0.15,
       },
     },
   }
 
   const itemVariants = {
-    hidden: { opacity: 0, y: 30 },
+    hidden: { opacity: 0, y: 40, scale: 0.95 },
     visible: {
       opacity: 1,
       y: 0,
+      scale: 1,
       transition: {
         type: 'spring',
-        stiffness: 100,
+        stiffness: 80,
         damping: 20,
       },
     },
   }
 
   return (
-    <div className="flex flex-col">
+    <div className="min-h-screen gradient-bg">
       {/* Hero Section */}
-      <section className="relative flex min-h-[90vh] items-center justify-center overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Animated Background */}
-        <div className="absolute inset-0 animated-bg" />
-        
-        {/* Floating Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          {[...Array(20)].map((_, i) => (
+        <div className="absolute inset-0">
+          {/* Gradient Orbs */}
+          <motion.div
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.5, 0.3],
+            }}
+            transition={{ duration: 8, repeat: Infinity }}
+            className="absolute top-1/4 left-1/4 w-96 h-96 bg-primary/20 rounded-full blur-3xl"
+          />
+          <motion.div
+            animate={{
+              scale: [1, 1.3, 1],
+              opacity: [0.2, 0.4, 0.2],
+            }}
+            transition={{ duration: 10, repeat: Infinity, delay: 1 }}
+            className="absolute bottom-1/4 right-1/4 w-80 h-80 bg-secondary/20 rounded-full blur-3xl"
+          />
+          <motion.div
+            animate={{
+              scale: [1, 1.1, 1],
+              opacity: [0.15, 0.3, 0.15],
+            }}
+            transition={{ duration: 12, repeat: Infinity, delay: 2 }}
+            className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-primary/10 rounded-full blur-3xl"
+          />
+        </div>
+
+        {/* Floating Particles */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          {[...Array(30)].map((_, i) => (
             <motion.div
               key={i}
-              className="absolute"
-              initial={{
-                x: Math.random() * 100 + '%',
-                y: Math.random() * 100 + '%',
-                scale: Math.random() * 0.5 + 0.5,
+              className="absolute w-1 h-1 bg-primary/40 rounded-full"
+              style={{
+                left: `${Math.random() * 100}%`,
+                top: `${Math.random() * 100}%`,
               }}
               animate={{
-                y: [null, Math.random() * -100],
-                opacity: [0, 1, 0],
+                y: [0, -100, 0],
+                opacity: [0, 0.8, 0],
               }}
               transition={{
                 duration: Math.random() * 10 + 10,
                 repeat: Infinity,
                 delay: Math.random() * 5,
               }}
-            >
-              <Star className="h-2 w-2 text-mystic-400 opacity-30" />
-            </motion.div>
+            />
           ))}
         </div>
 
-        <div className="container relative z-10 px-4 text-center">
+        <div className="container-custom relative z-10">
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.8, ease: 'easeOut' }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center max-w-4xl mx-auto"
           >
             {/* Badge */}
             <motion.div
-              initial={{ opacity: 0, y: -20 }}
-              animate={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
               transition={{ delay: 0.2 }}
-              className="mb-6 inline-flex items-center rounded-full border border-mystic-500/30 bg-mystic-500/10 px-6 py-3 text-sm backdrop-blur-sm"
+              className="inline-flex items-center gap-2 px-6 py-3 rounded-full glass-card mb-8"
             >
-              <Sparkles className="mr-2 h-4 w-4 text-mystic-400" />
-              <span className="text-mystic-300">五千年智慧 × AI 科技</span>
+              <Sparkles className="w-4 h-4 text-primary animate-pulse" />
+              <span className="text-sm text-muted-foreground">{t('home.hero.badge')}</span>
             </motion.div>
 
             {/* Title */}
             <motion.h1
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.4 }}
-              className="mb-6 text-5xl font-bold tracking-tight sm:text-6xl lg:text-7xl"
+              transition={{ delay: 0.3 }}
+              className="text-5xl sm:text-6xl lg:text-7xl font-bold mb-6"
             >
-              <span className="block text-white">洞悉天机</span>
+              <span className="text-white">{t('home.hero.title')}</span>
+              <br />
               <motion.span
                 initial={{ backgroundPosition: '0% 50%' }}
-                animate={{ backgroundPosition: '100% 50%' }}
-                transition={{ duration: 3, repeat: Infinity, repeatType: 'reverse' }}
-                className="block bg-gradient-to-r from-mystic-400 via-gold-400 to-mystic-400 bg-clip-text text-transparent"
-                style={{ backgroundSize: '200%' }}
+                animate={{ backgroundPosition: ['0% 50%', '100% 50%', '0% 50%'] }}
+                transition={{ duration: 5, repeat: Infinity }}
+                className="text-gradient block"
               >
-                掌控命运
+                {t('home.hero.subtitle')}
               </motion.span>
             </motion.h1>
 
-            {/* Subtitle */}
+            {/* Description */}
             <motion.p
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ delay: 0.6 }}
-              className="mx-auto mb-10 max-w-2xl text-lg text-muted-foreground sm:text-xl"
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ delay: 0.5 }}
+              className="text-xl text-muted-foreground mb-12 max-w-2xl mx-auto leading-relaxed"
             >
               {t('home.hero.desc')}
             </motion.p>
@@ -121,36 +146,58 @@ export default function HomePage({ params: { locale } }: HomePageProps) {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.8 }}
-              className="flex flex-col items-center justify-center gap-4 sm:flex-row"
+              transition={{ delay: 0.7 }}
+              className="flex flex-col sm:flex-row items-center justify-center gap-4"
             >
               <Link href={`/${locale}/fortune`}>
                 <motion.div
                   whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="group"
                 >
-                  <Button size="lg" variant="mystic" className="group text-lg px-8 py-6">
-                    <Sparkles className="mr-2 h-5 w-5" />
+                  <Button size="lg" className="btn-primary text-lg px-10">
+                    <Sparkles className="w-5 h-5 mr-2 group-hover:animate-spin" />
                     {t('home.hero.cta')}
-                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
                   </Button>
                 </motion.div>
               </Link>
               <Link href={`/${locale}/master`}>
                 <motion.div
                   whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                  whileTap={{ scale: 0.98 }}
                 >
-                  <Button
-                    size="lg"
-                    variant="outline"
-                    className="border-mystic-500/30 bg-white/5 text-lg px-8 py-6 backdrop-blur-sm hover:bg-white/10"
-                  >
-                    <Moon className="mr-2 h-4 w-4" />
+                  <Button size="lg" variant="outline" className="btn-secondary text-lg px-10">
+                    <Moon className="w-5 h-5 mr-2" />
                     {t('home.cta.button')}
                   </Button>
                 </motion.div>
               </Link>
+            </motion.div>
+
+            {/* Stats */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+              className="mt-16 grid grid-cols-3 gap-8 max-w-2xl mx-auto"
+            >
+              {[
+                { value: '5000+', label: t('home.hero.stats.years') },
+                { value: '100K+', label: t('home.hero.stats.users') },
+                { value: '99.9%', label: t('home.hero.stats.accuracy') },
+              ].map((stat, index) => (
+                <div key={index} className="text-center">
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 1.2 + index * 0.1 }}
+                    className="text-3xl sm:text-4xl font-bold text-gradient mb-2"
+                  >
+                    {stat.value}
+                  </motion.div>
+                  <div className="text-sm text-muted-foreground">{stat.label}</div>
+                </div>
+              ))}
             </motion.div>
           </motion.div>
         </div>
@@ -163,30 +210,37 @@ export default function HomePage({ params: { locale } }: HomePageProps) {
           className="absolute bottom-8 left-1/2 -translate-x-1/2"
         >
           <motion.div
-            animate={{ y: [0, 10, 0] }}
+            animate={{ y: [0, 8, 0] }}
             transition={{ duration: 2, repeat: Infinity }}
-            className="flex h-12 w-8 items-center justify-center rounded-full border-2 border-mystic-500/30"
+            className="w-6 h-10 rounded-full border-2 border-white/20 flex items-start justify-center p-2"
           >
             <motion.div
-              animate={{ y: [0, 8, 0] }}
+              animate={{ y: [0, 12, 0] }}
               transition={{ duration: 2, repeat: Infinity }}
-              className="h-2 w-1 rounded-full bg-mystic-500" />
+              className="w-1.5 h-1.5 rounded-full bg-primary"
+            />
           </motion.div>
         </motion.div>
       </section>
 
       {/* Features Section */}
-      <section className="relative py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-mystic-500/5 to-transparent" />
-        <div className="container relative px-4">
+      <section className="section-padding relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-transparent via-primary/5 to-transparent" />
+        <div className="container-custom relative">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-16 text-center"
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
           >
-            <h2 className="mb-4 text-4xl font-bold">{t('home.features.title')}</h2>
-            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
+            <span className="text-sm font-medium text-primary uppercase tracking-wider">
+              {t('home.features.badge')}
+            </span>
+            <h2 className="text-4xl sm:text-5xl font-bold mt-4 mb-6">
+              {t('home.features.title')}
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               {t('home.features.subtitle')}
             </p>
           </motion.div>
@@ -196,36 +250,45 @@ export default function HomePage({ params: { locale } }: HomePageProps) {
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}
-            className="grid gap-8 md:grid-cols-2 lg:grid-cols-4"
+            className="grid-features"
           >
             {t.raw('home.features.items').map((feature: any, index: number) => (
               <motion.div
                 key={index}
                 variants={itemVariants}
                 whileHover={{ y: -10, scale: 1.02 }}
-                className="group relative overflow-hidden rounded-2xl border border-mystic-500/20 bg-card/80 p-8 backdrop-blur-xl transition-all hover:border-mystic-500/40 hover:shadow-2xl hover:shadow-mystic-500/10"
+                className="glass-card card-hover p-8 group cursor-pointer"
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-mystic-500/5 to-transparent opacity-0 transition-opacity group-hover:opacity-100" />
+                <div className="mb-6">
+                  <motion.div
+                    whileHover={{ rotate: 360, scale: 1.1 }}
+                    transition={{ duration: 0.6 }}
+                    className="w-16 h-16 rounded-2xl bg-gradient-to-br from-primary/20 to-secondary/20 flex items-center justify-center group-hover:from-primary/30 group-hover:to-secondary/30 transition-colors"
+                  >
+                    {feature.icon === 'sparkles' && (
+                      <Sparkles className="w-8 h-8 text-primary" />
+                    )}
+                    {feature.icon === 'globe' && (
+                      <Globe className="w-8 h-8 text-primary" />
+                    )}
+                    {feature.icon === 'zap' && (
+                      <Zap className="w-8 h-8 text-primary" />
+                    )}
+                    {feature.icon === 'shield' && (
+                      <Shield className="w-8 h-8 text-primary" />
+                    )}
+                  </motion.div>
+                </div>
+                <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {feature.desc}
+                </p>
                 <motion.div
-                  whileHover={{ rotate: 360 }}
-                  transition={{ duration: 0.5 }}
-                  className="mb-6 inline-flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br from-mystic-500/20 to-purple-600/20"
-                >
-                  {feature.icon === 'sparkles' && (
-                    <Sparkles className="h-8 w-8 text-mystic-400" />
-                  )}
-                  {feature.icon === 'globe' && (
-                    <Globe className="h-8 w-8 text-mystic-400" />
-                  )}
-                  {feature.icon === 'zap' && (
-                    <Zap className="h-8 w-8 text-mystic-400" />
-                  )}
-                  {feature.icon === 'shield' && (
-                    <Shield className="h-8 w-8 text-mystic-400" />
-                  )}
-                </motion.div>
-                <h3 className="mb-3 text-xl font-semibold">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.desc}</p>
+                  initial={{ scaleX: 0 }}
+                  whileHover={{ scaleX: 1 }}
+                  transition={{ duration: 0.3 }}
+                  className="mt-6 h-1 bg-gradient-to-r from-primary to-secondary rounded-full"
+                />
               </motion.div>
             ))}
           </motion.div>
@@ -233,39 +296,62 @@ export default function HomePage({ params: { locale } }: HomePageProps) {
       </section>
 
       {/* How It Works */}
-      <section className="py-32">
-        <div className="container px-4">
+      <section className="section-padding relative">
+        <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            className="mb-16 text-center"
+            className="text-center mb-16"
           >
-            <h2 className="mb-4 text-4xl font-bold">{t('home.howItWorks.title')}</h2>
-            <p className="mx-auto max-w-2xl text-lg text-muted-foreground">
+            <span className="text-sm font-medium text-secondary uppercase tracking-wider">
+              {t('home.howItWorks.badge')}
+            </span>
+            <h2 className="text-4xl sm:text-5xl font-bold mt-4 mb-6">
+              {t('home.howItWorks.title')}
+            </h2>
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               {t('home.howItWorks.subtitle')}
             </p>
           </motion.div>
 
-          <div className="grid gap-8 md:grid-cols-3">
+          <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
             {t.raw('home.howItWorks.steps').map((step: any, index: number) => (
               <motion.div
                 key={index}
-                initial={{ opacity: 0, y: 30 }}
+                initial={{ opacity: 0, y: 40 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.2 }}
                 className="relative text-center"
               >
-                <div className="mb-6 inline-flex h-24 w-24 items-center justify-center rounded-full bg-gradient-to-br from-mystic-500/20 to-gold-500/20">
-                  {step.icon === 'user' && <UserIcon className="h-12 w-12 text-mystic-400" />}
-                  {step.icon === 'sparkles' && <Sparkles className="h-12 w-12 text-mystic-400" />}
-                  {step.icon === 'star' && <Star className="h-12 w-12 text-mystic-400" />}
+                {/* Connection Line */}
+                {index < 2 && (
+                  <div className="hidden md:block absolute top-12 left-1/2 w-full h-0.5 bg-gradient-to-r from-primary/30 to-secondary/30" />
+                )}
+                
+                <div className="relative mb-6">
+                  <motion.div
+                    whileHover={{ scale: 1.1 }}
+                    className="w-24 h-24 mx-auto rounded-full glass-card flex items-center justify-center relative z-10"
+                  >
+                    <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/20 to-secondary/20 animate-pulse" />
+                    {step.icon === 'user' && (
+                      <Sparkle className="w-10 h-10 text-primary" />
+                    )}
+                    {step.icon === 'sparkles' && (
+                      <Sparkles className="w-10 h-10 text-primary" />
+                    )}
+                    {step.icon === 'star' && (
+                      <Star className="w-10 h-10 text-secondary" />
+                    )}
+                  </motion.div>
+                  <div className="absolute -top-2 -right-2 w-10 h-10 rounded-full bg-gradient-to-br from-primary to-purple-600 flex items-center justify-center text-white font-bold text-lg shadow-lg">
+                    {index + 1}
+                  </div>
                 </div>
-                <div className="absolute -top-2 -right-4 text-8xl font-bold text-mystic-500/10">
-                  0{index + 1}
-                </div>
-                <h3 className="mb-2 text-xl font-semibold">{step.title}</h3>
+                
+                <h3 className="text-xl font-semibold mb-3">{step.title}</h3>
                 <p className="text-muted-foreground">{step.desc}</p>
               </motion.div>
             ))}
@@ -274,64 +360,75 @@ export default function HomePage({ params: { locale } }: HomePageProps) {
       </section>
 
       {/* CTA Section */}
-      <section className="py-32">
-        <div className="container px-4">
+      <section className="section-padding">
+        <div className="container-custom">
           <motion.div
             initial={{ opacity: 0, scale: 0.95 }}
             whileInView={{ opacity: 1, scale: 1 }}
             viewport={{ once: true }}
             whileHover={{ scale: 1.02 }}
-            className="relative overflow-hidden rounded-3xl bg-gradient-to-r from-mystic-600 via-purple-600 to-mystic-800 p-12 text-center sm:p-20"
+            className="relative overflow-hidden rounded-3xl glass-card p-12 sm:p-20 text-center"
           >
-            {/* Animated Background Elements */}
-            <div className="absolute inset-0">
+            {/* Background Effects */}
+            <div className="absolute inset-0 overflow-hidden">
               <motion.div
-                animate={{
-                  rotate: [0, 360],
-                }}
+                animate={{ rotate: [0, 360] }}
                 transition={{ duration: 60, repeat: Infinity, ease: 'linear' }}
-                className="absolute -top-24 -right-24 h-96 w-96 rounded-full border border-white/10"
+                className="absolute -top-40 -right-40 w-80 h-80 border border-primary/20 rounded-full"
               />
               <motion.div
-                animate={{
-                  rotate: [0, -360],
-                }}
+                animate={{ rotate: [0, -360] }}
                 transition={{ duration: 80, repeat: Infinity, ease: 'linear' }}
-                className="absolute -bottom-24 -left-24 h-96 w-96 rounded-full border border-white/10"
+                className="absolute -bottom-40 -left-40 w-96 h-96 border border-secondary/20 rounded-full"
               />
             </div>
 
             <div className="relative z-10">
-              <motion.h2
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                className="mb-6 text-4xl font-bold text-white sm:text-5xl"
-              >
-                {t('home.cta.title')}
-              </motion.h2>
-              <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="mx-auto mb-10 max-w-xl text-lg text-mystic-100"
-              >
-                {t('home.cta.subtitle')}
-              </motion.p>
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+                viewport={{ once: true }}
+              >
+                <Sparkles className="w-16 h-16 mx-auto mb-6 text-primary animate-glow" />
+              </motion.div>
+              
+              <motion.h2
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.1 }}
+                className="text-4xl sm:text-5xl font-bold mb-6"
+              >
+                {t('home.cta.title')}
+              </motion.h2>
+              
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.2 }}
+                className="text-lg text-muted-foreground mb-10 max-w-xl mx-auto"
+              >
+                {t('home.cta.subtitle')}
+              </motion.p>
+              
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: 0.3 }}
+                className="flex flex-col sm:flex-row items-center justify-center gap-4"
               >
                 <Link href={`/${locale}/fortune`}>
-                  <Button
-                    size="lg"
-                    className="bg-white text-mystic-600 hover:bg-mystic-50 text-lg px-10 py-8"
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.98 }}
                   >
-                    <Sparkles className="mr-2 h-5 w-5" />
-                    {t('home.cta.button')}
-                  </Button>
+                    <Button size="lg" className="btn-primary text-lg px-12">
+                      <Sparkles className="w-5 h-5 mr-2" />
+                      {t('home.cta.button')}
+                    </Button>
+                  </motion.div>
                 </Link>
               </motion.div>
             </div>
@@ -339,13 +436,5 @@ export default function HomePage({ params: { locale } }: HomePageProps) {
         </div>
       </section>
     </div>
-  )
-}
-
-function UserIcon({ className }: { className?: string }) {
-  return (
-    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-    </svg>
   )
 }
