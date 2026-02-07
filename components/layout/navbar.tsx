@@ -13,7 +13,6 @@ import { useTranslations } from 'next-intl'
 import { Locale, localeNames, localeFlags, locales } from '@/i18n-config'
 import { useRouter, usePathname } from '@/navigation'
 import Link from 'next/link'
-import { motion } from 'framer-motion'
 
 export function Navbar() {
   const t = useTranslations()
@@ -28,24 +27,22 @@ export function Navbar() {
   }
 
   return (
-    <header className="sticky top-0 z-50 border-b border-white/10 bg-background/80 backdrop-blur-xl">
-      <div className="container-custom">
-        <div className="flex h-16 items-center justify-between">
+    <header className="fixed top-0 left-0 right-0 z-50 glass border-b border-white/5">
+      <div className="max-w-7xl mx-auto px-6 lg:px-8">
+        <div className="flex items-center justify-between h-20">
           {/* Logo */}
-          <Link href={`/${currentLocale}`} className="flex items-center space-x-2">
-            <motion.div
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.5 }}
-            >
+          <Link href={`/${currentLocale}`} className="flex items-center space-x-3 group">
+            <div className="relative">
               <Sparkles className="h-8 w-8 text-primary" />
-            </motion.div>
-            <span className="hidden text-xl font-bold sm:inline-block text-gradient">
+              <div className="absolute -inset-1 bg-primary/20 rounded-full blur-sm opacity-0 group-hover:opacity-100 transition-opacity" />
+            </div>
+            <span className="hidden sm:inline-block text-xl font-bold text-gradient bg-gradient-to-r from-primary via-purple-400 to-gold bg-clip-text">
               天机阁
             </span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center space-x-2">
+          <nav className="hidden md:flex items-center space-x-1">
             {[
               { key: 'home', href: `/${currentLocale}` },
               { key: 'fortune', href: `/${currentLocale}/fortune` },
@@ -53,13 +50,7 @@ export function Navbar() {
               { key: 'master', href: `/${currentLocale}/master` },
             ].map((item) => (
               <Link key={item.key} href={item.href}>
-                <motion.span
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="px-4 py-2 rounded-lg text-sm font-medium text-muted-foreground hover:text-foreground hover:bg-white/5 transition-colors"
-                >
-                  {t(`nav.${item.key}`)}
-                </motion.span>
+                <span className="nav-link">{t(`nav.${item.key}`)}</span>
               </Link>
             ))}
           </nav>
@@ -69,19 +60,19 @@ export function Navbar() {
             {/* Language Switcher */}
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="icon" className="rounded-full">
+                <Button variant="ghost" size="icon" className="rounded-full hover:bg-white/5">
                   <Globe className="h-5 w-5" />
                   <span className="sr-only">{t('nav.language')}</span>
                 </Button>
               </DropdownMenuTrigger>
-              <DropdownMenuContent align="end" className="glass-card border-white/10">
+              <DropdownMenuContent align="end" className="glass border-white/10 min-w-[140px]">
                 {locales.map((locale) => (
                   <DropdownMenuItem
                     key={locale}
                     onClick={() => handleLocaleChange(locale)}
-                    className="flex items-center space-x-2 cursor-pointer"
+                    className="flex items-center space-x-2 cursor-pointer py-3"
                   >
-                    <span>{localeFlags[locale]}</span>
+                    <span className="text-lg">{localeFlags[locale]}</span>
                     <span>{localeNames[locale]}</span>
                   </DropdownMenuItem>
                 ))}
@@ -93,15 +84,23 @@ export function Navbar() {
               variant="ghost"
               size="icon"
               onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
-              className="rounded-full"
+              className="rounded-full hover:bg-white/5"
             >
               <Sun className="h-5 w-5 dark:hidden" />
               <Moon className="hidden h-5 w-5 dark:block" />
               <span className="sr-only">Toggle theme</span>
             </Button>
 
+            {/* CTA Button */}
+            <Link href={`/${currentLocale}/fortune`}>
+              <Button className="btn-elegant hidden sm:flex py-2">
+                <Sparkles className="h-4 w-4 mr-2" />
+                {t('nav.fortune')}
+              </Button>
+            </Link>
+
             {/* Mobile Menu Button */}
-            <Button variant="ghost" size="icon" className="md:hidden rounded-full">
+            <Button variant="ghost" size="icon" className="md:hidden rounded-full hover:bg-white/5">
               <svg
                 className="h-5 w-5"
                 fill="none"

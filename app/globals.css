@@ -4,50 +4,54 @@
 
 @layer base {
   :root {
-    /* 新的柔和深色主题 - 紫金色调 */
-    --background: 250 25% 8%;
-    --foreground: 0 0% 98%;
-    --card: 250 25% 12%;
-    --card-foreground: 0 0% 98%;
-    --popover: 250 25% 12%;
-    --popover-foreground: 0 0% 98%;
-    --primary: 270 70% 55%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 35 85% 55%;
-    --secondary-foreground: 0 0% 10%;
-    --muted: 250 25% 20%;
-    --muted-foreground: 250 15% 65%;
-    --accent: 250 25% 18%;
-    --accent-foreground: 0 0% 98%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 250 25% 20%;
-    --input: 250 25% 20%;
-    --ring: 270 70% 55%;
+    /* 高级紫金色调 - 神秘优雅 */
+    --background: 260 40% 6%;
+    --foreground: 40 20% 98%;
+    --card: 260 30% 10%;
+    --card-foreground: 40 20% 98%;
+    --popover: 260 30% 10%;
+    --popover-foreground: 40 20% 98%;
+    --primary: 270 65% 55%;
+    --primary-foreground: 40 20% 98%;
+    --secondary: 35 75% 50%;
+    --secondary-foreground: 40 10% 10%;
+    --muted: 260 20% 20%;
+    --muted-foreground: 260 15% 65%;
+    --accent: 260 25% 15%;
+    --accent-foreground: 40 20% 98%;
+    --destructive: 0 60% 45%;
+    --destructive-foreground: 40 20% 98%;
+    --border: 260 25% 20%;
+    --input: 260 25% 18%;
+    --ring: 270 65% 55%;
     --radius: 1rem;
+    
+    /* 自定义颜色 */
+    --mystic: 270 65% 55%;
+    --gold: 35 75% 50%;
+    --deep-purple: 260 40% 15%;
   }
 
-  /* 浅色主题 */
   .light {
-    --background: 0 0% 98%;
-    --foreground: 250 25% 8%;
-    --card: 0 0% 100%;
-    --card-foreground: 250 25% 8%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 250 25% 8%;
-    --primary: 270 70% 55%;
-    --primary-foreground: 0 0% 100%;
-    --secondary: 35 85% 55%;
-    --secondary-foreground: 0 0% 10%;
-    --muted: 250 15% 92%;
-    --muted-foreground: 250 10% 45%;
-    --accent: 250 15% 95%;
-    --accent-foreground: 250 25% 8%;
-    --destructive: 0 84% 60%;
-    --destructive-foreground: 0 0% 98%;
-    --border: 250 15% 88%;
-    --input: 250 15% 88%;
-    --ring: 270 70% 55%;
+    --background: 40 20% 97%;
+    --foreground: 260 30% 8%;
+    --card: 40 20% 100%;
+    --card-foreground: 260 30% 8%;
+    --popover: 40 20% 100%;
+    --popover-foreground: 260 30% 8%;
+    --primary: 270 65% 55%;
+    --primary-foreground: 40 20% 98%;
+    --secondary: 35 75% 50%;
+    --secondary-foreground: 40 10% 10%;
+    --muted: 260 15% 90%;
+    --muted-foreground: 260 10% 45%;
+    --accent: 260 15% 95%;
+    --accent-foreground: 260 30% 8%;
+    --destructive: 0 60% 45%;
+    --destructive-foreground: 40 20% 98%;
+    --border: 260 15% 85%;
+    --input: 260 15% 90%;
+    --ring: 270 65% 55%;
   }
 }
 
@@ -58,46 +62,164 @@
   body {
     @apply bg-background text-foreground;
     font-feature-settings: "rlig" 1, "calt" 1;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
   }
 }
 
-/* 改进的渐变背景 */
-.gradient-bg {
-  background: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(250 30% 12%) 50%, hsl(270 30% 15%) 100%);
+/* 优雅的渐变背景 */
+.bg-elegant {
+  background: linear-gradient(135deg, 
+    hsl(var(--background)) 0%,
+    hsl(260 35% 12%) 30%,
+    hsl(270 40% 15%) 70%,
+    hsl(var(--background)) 100%
+  );
 }
 
-/* 玻璃态卡片 */
-.glass-card {
-  @apply backdrop-blur-xl bg-card/80 border border-white/10 rounded-2xl;
+/* 高级玻璃态效果 */
+.glass {
+  @apply backdrop-blur-2xl;
+  background: hsla(var(--card) / 0.7);
+  border: 1px solid hsla(var(--border) / 0.5);
+}
+
+/* 金色渐变文字 */
+.text-gold-gradient {
+  background: linear-gradient(135deg, 
+    hsl(var(--gold)) 0%,
+    hsl(45 90% 55%) 50%,
+    hsl(var(--gold)) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 紫色渐变文字 */
+.text-mystic-gradient {
+  background: linear-gradient(135deg,
+    hsl(270 65% 60%) 0%,
+    hsl(280 70% 70%) 50%,
+    hsl(290 65% 60%) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 发光效果 */
+.glow {
   box-shadow: 
-    0 8px 32px rgba(139, 92, 246, 0.1),
-    0 0 0 1px rgba(255, 255, 255, 0.05);
+    0 0 20px hsla(var(--mystic) / 0.3),
+    0 0 40px hsla(var(--mystic) / 0.2),
+    0 0 60px hsla(var(--mystic) / 0.1);
 }
 
-/* 发光按钮效果 */
-.glow-button {
-  @apply relative overflow-hidden;
-  transition: all 0.3s ease;
+.glow-gold {
+  box-shadow: 
+    0 0 15px hsla(var(--gold) / 0.4),
+    0 0 30px hsla(var(--gold) / 0.2);
 }
 
-.glow-button::before {
+/* 优雅的按钮 */
+.btn-elegant {
+  @apply relative overflow-hidden px-8 py-4 font-medium rounded-xl;
+  background: linear-gradient(135deg, 
+    hsl(var(--primary)) 0%,
+    hsl(280 65% 55%) 100%
+  );
+  @apply text-white transition-all duration-300;
+  @apply hover:shadow-lg hover:shadow-primary/25;
+  @apply hover:scale-[1.02] active:scale-[0.98];
+}
+
+.btn-elegant::before {
   content: '';
-  @apply absolute inset-0 bg-gradient-to-r from-primary/20 to-secondary/20 opacity-0 transition-opacity duration-300;
+  @apply absolute inset-0 opacity-0 transition-opacity duration-300;
+  background: linear-gradient(135deg,
+    transparent 0%,
+    hsla(40 20% 100% / 0.1) 50%,
+    transparent 100%
+  );
 }
 
-.glow-button:hover::before {
+.btn-elegant:hover::before {
   @apply opacity-100;
 }
 
-/* 改进的动画 */
-@keyframes float {
-  0%, 100% { transform: translateY(0px); }
-  50% { transform: translateY(-20px); }
+.btn-outline-elegant {
+  @apply px-8 py-4 font-medium rounded-xl;
+  @apply border-2 border-primary/30;
+  @apply bg-transparent text-foreground;
+  @apply transition-all duration-300;
+  @apply hover:bg-primary/10 hover:border-primary/50;
 }
 
-@keyframes glow {
-  0%, 100% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.3); }
-  50% { box-shadow: 0 0 40px rgba(139, 92, 246, 0.6); }
+/* 优雅的卡片 */
+.card-elegant {
+  @apply relative overflow-hidden rounded-2xl;
+  background: hsla(var(--card) / 0.8);
+  border: 1px solid hsla(var(--border) / 0.3);
+  @apply transition-all duration-500;
+  @apply hover:shadow-xl hover:shadow-primary/10;
+  @apply hover:border-primary/30;
+}
+
+.card-elegant::before {
+  content: '';
+  @apply absolute inset-0 opacity-0 transition-opacity duration-500;
+  background: linear-gradient(135deg,
+    hsla(var(--primary) / 0.1) 0%,
+    transparent 50%,
+    hsla(var(--gold) / 0.05) 100%
+  );
+}
+
+.card-elegant:hover::before {
+  @apply opacity-100;
+}
+
+/* 输入框样式 */
+.input-elegant {
+  @apply w-full px-6 py-4 rounded-xl;
+  background: hsla(var(--input) / 0.5);
+  border: 1px solid hsla(var(--border) / 0.3);
+  @apply text-foreground placeholder:text-muted-foreground/50;
+  @apply transition-all duration-300;
+  @apply focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/10;
+}
+
+/* 选择框样式 */
+.select-elegant {
+  @apply w-full px-6 py-4 rounded-xl appearance-none cursor-pointer;
+  background: hsla(var(--input) / 0.5);
+  border: 1px solid hsla(var(--border) / 0.3);
+  @apply text-foreground;
+  @apply transition-all duration-300;
+  @apply focus:outline-none focus:border-primary/50 focus:ring-2 focus:ring-primary/10;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='hsl(270 65% 55%)'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1.25rem;
+  padding-right: 3rem;
+}
+
+/* 动画定义 */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
 }
 
 @keyframes shimmer {
@@ -105,109 +227,57 @@
   100% { background-position: 200% 0; }
 }
 
-.animate-float {
-  animation: float 6s ease-in-out infinite;
+@keyframes pulse-ring {
+  0% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
+  50% {
+    transform: scale(1);
+    opacity: 0.3;
+  }
+  100% {
+    transform: scale(0.8);
+    opacity: 0.5;
+  }
 }
 
-.animate-glow {
-  animation: glow 3s ease-in-out infinite;
+.animate-fade-in-up {
+  animation: fadeInUp 0.8s ease-out forwards;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
 }
 
 .animate-shimmer {
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.1), transparent);
+  background: linear-gradient(90deg, 
+    transparent,
+    hsla(40 20% 100% / 0.1),
+    transparent
+  );
   background-size: 200% 100%;
   animation: shimmer 2s infinite;
 }
 
-/* 改进的文字渐变 */
-.text-gradient {
-  @apply bg-gradient-to-r from-primary via-purple-400 to-secondary bg-clip-text text-transparent;
-  background-size: 200% auto;
-  animation: gradient-shift 4s ease infinite;
+.animate-pulse-ring {
+  animation: pulse-ring 3s ease-in-out infinite;
 }
 
-@keyframes gradient-shift {
-  0%, 100% { background-position: 0% center; }
-  50% { background-position: 100% center; }
-}
-
-/* 改进的卡片悬停效果 */
-.card-hover {
-  @apply transition-all duration-500;
-}
-
-.card-hover:hover {
-  transform: translateY(-8px) scale(1.02);
-  box-shadow: 
-    0 25px 50px -12px rgba(139, 92, 246, 0.25),
-    0 0 0 1px rgba(255, 255, 255, 0.1);
-}
-
-/* 改进的粒子效果容器 */
-.particles-container {
-  @apply absolute inset-0 overflow-hidden pointer-events-none;
-}
-
-/* 改进的按钮样式 */
-.btn-primary {
-  @apply px-8 py-4 bg-gradient-to-r from-primary to-purple-600 text-white font-semibold rounded-xl;
-  @apply hover:from-primary/90 hover:to-purple-600/90;
-  @apply transform hover:scale-105 active:scale-95;
-  @apply transition-all duration-300;
-  @apply shadow-lg shadow-primary/25;
-}
-
-.btn-secondary {
-  @apply px-8 py-4 bg-white/10 backdrop-blur text-white font-semibold rounded-xl;
-  @apply border border-white/20;
-  @apply hover:bg-white/20 hover:border-white/30;
-  @apply transform hover:scale-105 active:scale-95;
-  @apply transition-all duration-300;
-}
-
-/* 改进的输入框样式 */
-.input-field {
-  @apply w-full px-6 py-4 bg-white/5 border border-white/10 rounded-xl;
-  @apply text-white placeholder:text-white/40;
-  @apply focus:border-primary/50 focus:ring-2 focus:ring-primary/20;
-  @apply transition-all duration-300;
-}
-
-/* 改进的选择框样式 */
-.select-field {
-  @apply w-full px-6 py-4 bg-white/5 border border-white/10 rounded-xl;
-  @apply text-white appearance-none cursor-pointer;
-  @apply focus:border-primary/50 focus:ring-2 focus:ring-primary/20;
-  @apply transition-all duration-300;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='none' viewBox='0 0 24 24' stroke='%238b5cf6'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M19 9l-7 7-7-7'%3E%3C/path%3E%3C/svg%3E");
-  background-repeat: no-repeat;
-  background-position: right 1rem center;
-  background-size: 1.5em;
-  padding-right: 3rem;
-}
-
-/* 改进的 Section 样式 */
-.section-padding {
-  @apply py-20 px-4 sm:px-6 lg:px-8;
-}
-
-/* 改进的容器 */
-.container-custom {
-  @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
-}
-
-/* 改进的网格布局 */
-.grid-cards {
-  @apply grid gap-6 sm:grid-cols-2 lg:grid-cols-4;
-}
-
-.grid-features {
-  @apply grid gap-8 lg:grid-cols-2 xl:grid-cols-4;
-}
+/* 延迟动画 */
+.delay-100 { animation-delay: 0.1s; opacity: 0; }
+.delay-200 { animation-delay: 0.2s; opacity: 0; }
+.delay-300 { animation-delay: 0.3s; opacity: 0; }
+.delay-400 { animation-delay: 0.4s; opacity: 0; }
+.delay-500 { animation-delay: 0.5s; opacity: 0; }
+.delay-600 { animation-delay: 0.6s; opacity: 0; }
+.delay-700 { animation-delay: 0.7s; opacity: 0; }
+.delay-800 { animation-delay: 0.8s; opacity: 0; }
 
 /* 滚动条样式 */
 ::-webkit-scrollbar {
   width: 8px;
+  height: 8px;
 }
 
 ::-webkit-scrollbar-track {
@@ -220,4 +290,62 @@
 
 ::-webkit-scrollbar-thumb:hover {
   @apply bg-primary/50;
+}
+
+/* 选中文本样式 */
+::selection {
+  @apply bg-primary/30 text-foreground;
+}
+
+/* 数字统计样式 */
+.stat-number {
+  @apply text-4xl sm:text-5xl font-bold;
+  background: linear-gradient(135deg, 
+    hsl(var(--primary)) 0%,
+    hsl(var(--gold)) 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* 步骤指示器 */
+.step-indicator {
+  @apply relative flex items-center justify-center;
+}
+
+.step-indicator::before {
+  content: '';
+  @apply absolute w-full h-px bg-gradient-to-r from-primary/30 via-primary/50 to-primary/30;
+  z-index: 0;
+}
+
+/* 装饰元素 */
+.decoration {
+  @apply absolute pointer-events-none;
+  opacity: 0.1;
+}
+
+.decoration-circle {
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--gold));
+}
+
+/* 导航链接样式 */
+.nav-link {
+  @apply relative px-4 py-2 text-sm font-medium text-muted-foreground;
+  @apply transition-colors duration-300;
+  @apply hover:text-foreground;
+}
+
+.nav-link::after {
+  content: '';
+  @apply absolute bottom-0 left-1/2 w-0 h-0.5;
+  @apply bg-gradient-to-r from-primary to-gold;
+  @apply transition-all duration-300;
+  transform: translateX(-50%);
+}
+
+.nav-link:hover::after {
+  @apply w-full;
 }
