@@ -1,0 +1,39 @@
+{
+  "version": "1.0",
+  "modelPriority": [
+    "openrouter/anthropic/claude-opus-4.6",
+    "minimax/MiniMax-M2.1",
+    "openai/gpt-4o",
+    "google/gemini-2.0-pro"
+  ],
+  "defaultAgent": "Sisyphus",
+  "agents": {
+    "planner-sisyphus": {
+      "enabled": true,
+      "replace_plan": true
+    },
+    "librarian": {
+      "enabled": true
+    },
+    "explore": {
+      "enabled": true
+    },
+    "oracle": {
+      "enabled": true
+    }
+  },
+  "disabled_mcps": [],
+  "taskManagement": {
+    "autoRetry": true,
+    "maxRetries": 3,
+    "timeout": 300000,
+    "checkpointInterval": 60000
+  },
+  "experimental": {
+    "preemptive_compaction": true,
+    "preemptive_compaction_threshold": 0.85,
+    "auto_resume": true,
+    "aggressive_truncation": false,
+    "truncate_all_tool_outputs": false
+  }
+}
