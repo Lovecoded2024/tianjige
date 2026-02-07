@@ -22,58 +22,54 @@ export function Footer() {
   }
 
   return (
-    <footer className="border-t border-mystic-500/20 bg-background/50 backdrop-blur-lg">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid grid-cols-1 gap-8 md:grid-cols-4">
-          {/* Brand */}
-          <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <Sparkles className="h-6 w-6 text-mystic-500" />
-              <span className="text-xl font-bold gradient-text">天机阁</span>
+    <footer className="border-t border-foreground/[0.06] bg-background/80 backdrop-blur-xl">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 sm:py-12">
+        <div className="grid grid-cols-2 gap-8 sm:grid-cols-4">
+          <div className="col-span-2 sm:col-span-1 space-y-4">
+            <div className="flex items-center space-x-2.5">
+              <Sparkles className="h-5 w-5 text-primary" />
+              <span className="text-lg font-bold text-gradient">天机阁</span>
             </div>
-            <p className="text-sm text-muted-foreground">
+            <p className="text-sm text-muted-foreground leading-relaxed max-w-[200px]">
               五千年智慧与AI的完美融合
             </p>
           </div>
 
-          {/* Links */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold">快速链接</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
-              <li>
-                <Link href={`/${currentLocale}`} className="hover:text-foreground">
-                  首页
-                </Link>
-              </li>
-              <li>
-                <Link href={`/${currentLocale}/fortune`} className="hover:text-foreground">
-                  算命
-                </Link>
-              </li>
-              <li>
-                <Link href={`/${currentLocale}/artifacts`} className="hover:text-foreground">
-                  法器
-                </Link>
-              </li>
-              <li>
-                <Link href={`/${currentLocale}/master`} className="hover:text-foreground">
-                  大师
-                </Link>
-              </li>
+            <h3 className="mb-3.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">
+              快速链接
+            </h3>
+            <ul className="space-y-2.5 text-sm">
+              {[
+                { label: '首页', href: `/${currentLocale}` },
+                { label: '算命', href: `/${currentLocale}/fortune` },
+                { label: '法器', href: `/${currentLocale}/artifacts` },
+                { label: '大师', href: `/${currentLocale}/master` },
+              ].map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className="text-muted-foreground hover:text-foreground transition-colors duration-200"
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
             </ul>
           </div>
 
-          {/* Language */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold">语言</h3>
-            <ul className="space-y-2 text-sm text-muted-foreground">
+            <h3 className="mb-3.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">
+              语言
+            </h3>
+            <ul className="space-y-2.5 text-sm">
               {locales.map((locale) => (
                 <li key={locale}>
                   <button
                     onClick={() => handleLocaleChange(locale)}
-                    className="flex items-center space-x-2 hover:text-foreground"
+                    className="flex items-center space-x-2 text-muted-foreground hover:text-foreground transition-colors duration-200"
                   >
-                    <span>{localeFlags[locale]}</span>
+                    <span className="text-base">{localeFlags[locale]}</span>
                     <span>{localeNames[locale]}</span>
                   </button>
                 </li>
@@ -81,32 +77,33 @@ export function Footer() {
             </ul>
           </div>
 
-          {/* Social */}
           <div>
-            <h3 className="mb-4 text-sm font-semibold">社交</h3>
-            <div className="flex space-x-4">
+            <h3 className="mb-3.5 text-xs font-semibold uppercase tracking-wider text-muted-foreground/80">
+              社交
+            </h3>
+            <div className="flex space-x-3">
               <a
                 href="https://github.com/tianjige"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-muted-foreground hover:text-foreground"
+                className="flex items-center justify-center w-9 h-9 rounded-lg bg-foreground/5 text-muted-foreground hover:text-foreground hover:bg-foreground/10 transition-all duration-200"
+                aria-label="GitHub"
               >
-                <Github className="h-5 w-5" />
-                <span className="sr-only">GitHub</span>
+                <Github className="h-4 w-4" />
               </a>
               <a
                 href="#"
-                className="text-muted-foreground hover:text-foreground"
+                className="flex items-center justify-center w-9 h-9 rounded-lg bg-foreground/5 text-muted-foreground hover:text-foreground hover:bg-foreground/10 transition-all duration-200"
+                aria-label="Website"
               >
-                <Globe className="h-5 w-5" />
-                <span className="sr-only">Website</span>
+                <Globe className="h-4 w-4" />
               </a>
             </div>
           </div>
         </div>
 
-        <div className="mt-8 border-t border-mystic-500/20 pt-8 text-center text-sm text-muted-foreground">
-          <p>© 2024 天机阁. All rights reserved.</p>
+        <div className="mt-8 pt-8 border-t border-foreground/[0.06] text-center text-xs text-muted-foreground/70">
+          <p>&copy; {new Date().getFullYear()} 天机阁. All rights reserved.</p>
         </div>
       </div>
     </footer>

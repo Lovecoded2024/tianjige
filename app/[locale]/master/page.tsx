@@ -115,12 +115,11 @@ export default function MasterPage() {
   }
 
   return (
-    <div className="flex h-[calc(100vh-4rem)] gradient-bg">
-      {/* Header */}
+    <div className="flex flex-col h-[calc(100vh-4rem)] gradient-bg">
       <motion.div
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        className="border-b border-white/10 bg-card/50 backdrop-blur-xl"
+        className="border-b border-foreground/[0.06] bg-card/50 backdrop-blur-xl flex-shrink-0"
       >
         <div className="container-custom py-4">
           <div className="flex items-center justify-between">
